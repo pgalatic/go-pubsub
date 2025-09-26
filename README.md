@@ -60,21 +60,10 @@ When no clients are connected to a node, the node automatically passes a random 
 
 ### Run Unit Tests
 ```bash
-go test
-```
-
-### Run with Coverage
-```bash
-go test -cover
+go test -v -cover ./...
 ```
 
 ### Run Benchmarks
 ```bash
-go test -bench=.
-```
-
-### Integration Testing
-```bash
-# Run full test suite including integration tests
-go test -v -timeout 30s
+go test -bench=./...
 ```

@@ -1,4 +1,4 @@
-module example/hello
+module pubsub
 
 go 1.25.1
 
