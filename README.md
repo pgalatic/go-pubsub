@@ -13,8 +13,8 @@ go mod tidy
 You can start anywhere between 1 and 4 nodes using this system.
 
 ```bash
-# Start 3 nodes (servers will run on ports 8080, 8081, 8082)
-go run main.go server.go 3
+# Terminal 1: Start 3 nodes (servers will run on ports 8080, 8081, 8082)
+go run server/main.go server/server.go 3
 ```
 
 **Expected Output:**
@@ -29,13 +29,13 @@ Open new terminals for each client:
 
 ```bash
 # Terminal 2: Connect to node 0
-go run client.go server.go 0
+go run client/main.go 0
 
 # Terminal 3: Connect to node 1  
-go run client.go server.go 1
+go run client/main.go 1
 
 # Terminal 4: Connect to node 2
-go run client.go server.go 2
+go run client/main.go 2
 ```
 
 ## Usage Examples

@@ -126,10 +126,8 @@ func (s *Server) handleWebSocket(w http.ResponseWriter, r *http.Request) {
 		var msg Message
 		err := conn.ReadJSON(&msg)
 		if err != nil {
-			if websocket.IsCloseError(err, websocket.CloseNormalClosure, websocket.CloseGoingAway) {
-				// Normal closure, don't log as error
-				log.Printf("Client disconnected from node %d", s.nodeID)
-			} else {
+			// Don't log normal websocket closures as errors
+			if !websocket.IsCloseError(err, websocket.CloseNormalClosure, websocket.CloseGoingAway) {
 				log.Printf("Error reading message: %v", err)
 			}
 			break

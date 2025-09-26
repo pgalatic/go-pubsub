@@ -184,10 +184,10 @@ func (c *Client) readMessages() {
 			var msg Message
 			err := c.conn.ReadJSON(&msg)
 			if err != nil {
-				if websocket.IsUnexpectedCloseError(err, websocket.CloseGoingAway, websocket.CloseAbnormalClosure) {
+				if websocket.IsUnexpectedCloseError(err, websocket.CloseNormalClosure, websocket.CloseGoingAway) {
 					log.Printf("Connection error: %v", err)
+					close(c.done)
 				}
-				close(c.done)
 				return
 			}
 
