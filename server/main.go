@@ -53,7 +53,7 @@ func main() {
 func (c *Controller) Start() {
 	fmt.Printf("Starting PubSub system with %d nodes...\n", c.numNodes)
 
-	// Check for existing processes on ports
+	// Check that ports are available
 	c.checkPorts()
 
 	// Start servers
@@ -147,6 +147,8 @@ func (c *Controller) checkPorts() {
 }
 
 // isPortInUse checks if a port is currently in use
+// FIXME: This does not detect if another instance of *this program* is already
+// running on these ports.
 func (c *Controller) isPortInUse(port int) bool {
 	conn, err := net.Listen("tcp", fmt.Sprintf(":%d", port))
 	if err != nil {
