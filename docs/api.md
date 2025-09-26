@@ -43,8 +43,7 @@ curl -X POST http://localhost:8080/api/message \
     "id": "msg-001",
     "content": "Hello from another node",
     "timestamp": "2024-01-15T10:30:45Z",
-    "node_id": 1,
-    "sequence": 100
+    "node_id": 1
   }'
 ```
 

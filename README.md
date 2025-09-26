@@ -1,31 +1,6 @@
 # PubSub System Setup and Usage Guide
 
-## Prerequisites
-
-1. **Go Installation**: Ensure Go 1.21+ is installed
-2. **Dependencies**: The system uses Gorilla WebSocket library
-
-## Setup Instructions
-
-### 1. Create Project Directory
-```bash
-mkdir pubsub-system
-cd pubsub-system
-```
-
-### 2. Initialize Go Module
-```bash
-go mod init pubsub-system
-```
-
-### 3. Create Files
-Save each artifact as the following files:
-- `server.go` - Server implementation
-- `main.go` - Control program  
-- `client.go` - Client program
-- `server_test.go` - Test file
-
-### 4. Install Dependencies
+## Dependencies
 ```bash
 go get github.com/gorilla/websocket
 go mod tidy
@@ -34,12 +9,12 @@ go mod tidy
 ## Running the System
 
 ### Step 1: Start the Server Cluster
+
+You can start anywhere between 1 and 4 nodes using this system.
+
 ```bash
 # Start 3 nodes (servers will run on ports 8080, 8081, 8082)
 go run main.go server.go 3
-
-# Or start fewer nodes
-go run main.go server.go 2
 ```
 
 **Expected Output:**
@@ -66,9 +41,8 @@ go run client.go server.go 2
 ## Usage Examples
 
 ### Basic Messaging
-1. Type any message in a client terminal and press Enter
-2. The message will appear in all connected clients across all nodes
-3. Messages include timestamp, node ID, and sequence number
+
+If you type in a string and press Enter, the message will be sent to every other online node and show up in their terminals.
 
 ### Client Commands
 - `/help` - Show available commands
@@ -80,9 +54,7 @@ go run client.go server.go 2
 
 
 ### Automated Messages
-When no clients are connected to a node:
-- The node automatically sends random messages every 5-10 seconds
-- Messages contain random integers 0-9
+When no clients are connected to a node, the node automatically passes a random number to the network every 5-10 seconds.
 
 ## Testing the System
 
